@@ -1,9 +1,9 @@
 import { Text, VStack, Center, Heading, ScrollView } from "native-base"
 import { Image } from "native-base"
 
-import LogoSvg from '@assets/logo.svg'
+import LogoSvg from '@assets/icon_vazada.png'
 
-import BackgroundImg from  '@assets/background.png'
+import BackgroundImg from  '@assets/fundo-app-socinpro.jpeg'
 import { Input } from "@components/Input"
 import { Button } from "@components/Button"
 
@@ -22,12 +22,20 @@ export function SignUp(){
         ></Image>
         
         <Center my={24}>
-          <LogoSvg/>
-          <Text color={'gray.100'}  fontFamily={'heading'} fontSize={'sm'}>Treine sua mente e seu corpo</Text>
+          <Image 
+          source={LogoSvg}
+          resizeMode="stretch"
+          width={150}
+          height={100}
+          borderWidth={2}
+
+          
+          ></Image>
+          <Text color={'gray.100'}  fontFamily={'heading'} fontSize={'sm'}>Protegendo seus direitos</Text>
         </Center>
 
-        <Center mt={6}>
-          <Heading mt={36} mb={3} color={"white"} fontFamily={"heading"} fontSize={'xl'} >Crie sua conta</Heading>
+        <Center>
+          <Heading mt={2} mb={3} color={"white"} fontFamily={"heading"} fontSize={'xl'} >Crie sua conta</Heading>
         </Center>
 
         <Center my={4}>
