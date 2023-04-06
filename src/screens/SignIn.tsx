@@ -1,9 +1,9 @@
 import { Text, VStack, Center, Heading, ScrollView } from "native-base"
 import { Image } from "native-base"
 
-import LogoSvg from '@assets/logo.svg'
+import LogoSvg from '@assets/icon_vazada.png'
 
-import BackgroundImg from  '@assets/background.png'
+import BackgroundImg from  '@assets/background_image-login.jpg'
 import { Input } from "@components/Input"
 import { Button } from "@components/Button"
 
@@ -16,24 +16,30 @@ export function SignIn(){
         <Image
         source={BackgroundImg}
         alt={'Pessoas treinando'}
-        resizeMode="contain"
+        resizeMode="stretch"
         position={'absolute'}
         />
-        <Center my={24} >
-          <LogoSvg/>
-          <Text color={"gray.100"} fontSize={"sm"}>Treine a sua mente e o seu corpo</Text>
+        <Center mt={"32"} >
+          <Image
+          source={LogoSvg}
+          resizeMode="stretch"
+          width={150}
+          height={100}
+          borderWidth={2}
+          />
+          <Text color={"gray.100"} fontSize={"sm"}>Cuidando dos seus direitos</Text>
         </Center>
   
-      <Center mt={32}>
+      <Center mt={16}>
         <Heading color={"gray.100"} mb={6} fontSize={'xl'} fontFamily={"heading"}>Acesse sua conta</Heading>
   
-        <Input placeholder="E-mail" autoComplete="email" keyboardType="email-address" autoCapitalize="none"/>
+        <Input mt={6} placeholder="Usuário" autoComplete="email" keyboardType="email-address" autoCapitalize="none"/>
         <Input placeholder="Senha" autoComplete="password" secureTextEntry/>
         
         <Button title="Acessar"/>
         </Center>
   
-        <Center mt={20}>
+        <Center mt={32}>
           <Text 
             color={'gray.100'}
             mb={4}

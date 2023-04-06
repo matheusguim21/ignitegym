@@ -14,14 +14,14 @@ export function SignUp(){
       backgroundColor={'gray.700'}
       flex={1}
       >
-        <Image
+        <Image mt={4}
           source={BackgroundImg}
           resizeMode="contain"
           position={'absolute'}
           alt='Pessoas treinando'
         ></Image>
         
-        <Center my={24}>
+        <Center my={"16"}>
           <Image 
           source={LogoSvg}
           resizeMode="stretch"
@@ -35,30 +35,43 @@ export function SignUp(){
         </Center>
 
         <Center>
-          <Heading mt={2} mb={3} color={"white"} fontFamily={"heading"} fontSize={'xl'} >Crie sua conta</Heading>
+          <Heading  mb={3} color={"white"} fontFamily={"heading"} fontSize={'xl'} >Crie sua conta</Heading>
         </Center>
 
-        <Center my={4}>
+        <Center mt={4}>
           <Input 
-          placeholder="Nome"
+          placeholder="CPF ou CNPJ"
+          keyboardType="number-pad"
           ></Input>
           <Input 
-          placeholder="E-mail"
+          placeholder="Código SOCINPRO"
+          keyboardType="number-pad"
+          ></Input>
+          <Input 
+          placeholder="Nome de apresentação"
+          keyboardType="default"
+      
+          ></Input>
+          <Input 
+          placeholder="Nome de usuário"
+        keyboardType="default"
           ></Input>
           <Input 
           placeholder="Senha"
+          keyboardType="default"
           ></Input>
           <Input 
           placeholder="Confirme a senha"
+          keyboardType="default"
           ></Input>
 
         </Center>
 
-        <Center>
+        <Center mt={0}>
           <Button title="Criar e acessar"/>
-        </Center>
+        </Center >
 
-        <Center mt={8}>
+        <Center mt={0}>
           <Button title="Voltar para o login" variant={'outline'}></Button>
         </Center>
 
