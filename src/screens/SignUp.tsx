@@ -49,7 +49,7 @@ export function SignUp(){
           <HStack flex={1} >
             <Input mx={2}
             placeholder="CPF ou CNPJ"
-            color={'green.400'}
+            color={'green.500'}
             keyboardType="number-pad"
             variant={'CPF'}
             ></Input>
@@ -57,6 +57,7 @@ export function SignUp(){
             placeholder="Código SOC"
             keyboardType="number-pad"
             variant={'SOC'}
+            color={'blue.400'}
             ></Input>
           </HStack>
           <Input 
@@ -71,10 +72,12 @@ export function SignUp(){
           <Input 
           placeholder="Senha"
           keyboardType="default"
+          secureTextEntry
           ></Input>
           <Input 
           placeholder="Confirme a senha"
           keyboardType="default"
+          secureTextEntry
           ></Input>
 
         </Center>
