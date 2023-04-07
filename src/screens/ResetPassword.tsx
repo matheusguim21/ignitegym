@@ -1,16 +1,17 @@
-import { Text, VStack, Center, Heading, ScrollView } from "native-base"
+import { Text, VStack, Center, Heading, ScrollView, HStack } from "native-base"
 import { Image } from "native-base"
 
 import LogoSvg from '@assets/icon_vazada.png'
 
-import BackgroundImg from  '@assets/background_image-login.png'
+import BackgroundImg from  '@assets/fundo-app-socinpro.png'
+
 import { Input } from "@components/Input"
 import { Button } from "@components/Button"
 import { useNavigation } from "@react-navigation/native"
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes"
 
 
-export function SignIn(){
+export function ResetPassword(){
 
   const navigation = useNavigation<AuthNavigatorRoutesProps>()
 
@@ -21,7 +22,7 @@ export function SignIn(){
         <Image
         source={BackgroundImg}
         alt='Imagem de fundo'
-        resizeMode="stretch"
+        resizeMode="cover"
         position={'absolute'}
         />
         <Center mt={"24"} >
@@ -37,19 +38,26 @@ export function SignIn(){
         </Center>
   
       <Center mt={20}>
-        <Heading color={"gray.100"} mb={6} fontSize={'xl'} fontFamily={"heading"}>Acesse sua conta</Heading>
+        <Heading color={"gray.100"} mb={6} fontSize={'xl'} fontFamily={"heading"}>Recuperação de senha</Heading>
   
         <Input placeholder="Usuário" autoComplete="username" autoCapitalize="none"/>
-        <Input placeholder="Senha" autoComplete="password" secureTextEntry/>
-        
-        <Button title="Acessar"/>
-        <Button  
-        mt={-6}
-        title="Esqueci a senha" 
-        variant={'alternative'}
-        onPress={()=> navigation.navigate('resetPassword')}
+        <Center><Text color={'gray.100'} fontFamily={'body'} fontSize={'md'}>ou</Text></Center>
 
-        />
+        <HStack mt={4} flex={1} >
+            <Input mx={2}
+            placeholder="CPF ou CNPJ"
+            color={'green.400'}
+            keyboardType="number-pad"
+            variant={'CPF'}
+            ></Input>
+            <Input mx={2}
+            placeholder="Código SOC"
+            keyboardType="number-pad"
+            variant={'SOC'}
+            ></Input>
+          </HStack>
+        
+        <Button title="Enviar e-mail de recuperação de senha"/>
         </Center>
   
         <Center mt={8} mb={-10}>
