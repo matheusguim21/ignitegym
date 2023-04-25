@@ -1,6 +1,6 @@
 import {Platform} from 'react-native'
 import { createBottomTabNavigator, BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
-import { Center, useTheme } from "native-base";
+import { Box, Center, useTheme } from "native-base";
 import { Home } from "@screens/Home";
 import { Exercise } from "@screens/Exercise";
 import { History } from "@screens/History";
@@ -42,7 +42,7 @@ export function AppRoutes(){
         height: Platform.OS === 'android'? 'auto': 96,
         paddingBottom:sizes[10],
         paddingTop:sizes[6],
-        justifyContent:'flex-start'
+        
       }
     }}>
       <Screen
@@ -50,8 +50,17 @@ export function AppRoutes(){
       component={Home}
       options={{
         tabBarIcon:({color})=> (
+          <Box   // envolve o icone para dar uma area de toque maior do que a do icone
+          width={24}
+          height={12}
+          alignContent={'center'}
+          justifyContent={'center'}
+          alignItems={'center'}
+          >
           <HomeSvg fill={color} width={iconSize} height={iconSize}
+          
           />
+          </Box>
         )
       }}
       
@@ -60,14 +69,28 @@ export function AppRoutes(){
       name="history"
       component={History}
       options={{tabBarIcon:({color})=>(
-        <HistorySvg fill={color} width={iconSize} height={iconSize}/>
+
+        <Box  // envolve o icone para dar uma area de toque maior do que a do icone
+        width={24}
+        height={12}
+        alignContent={'center'}
+        justifyContent={'center'}
+        alignItems={'center'}
+        ><HistorySvg fill={color} width={iconSize} height={iconSize}/></Box
+       >
       )}}
       />
       <Screen
       name="profile"
       component={Profile}
       options={{tabBarIcon:({color})=>(
-        <ProfileSvg fill={color} width={iconSize} height={iconSize}/>
+        <Box // envolve o icone para dar uma area de toque maior do que a do icone
+        width={24}
+        height={12}
+        alignContent={'center'}
+        justifyContent={'center'}
+        alignItems={'center'}
+        ><ProfileSvg fill={color} width={iconSize} height={iconSize}/></Box>
       )}}
       />
       <Screen
