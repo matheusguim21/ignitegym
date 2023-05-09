@@ -2,10 +2,11 @@ import { Pressable, Text, IPressableProps, HStack} from "native-base"
 
 type Props = IPressableProps & {
   name:string;
+  isActive: boolean;
 
 }
 
-export function Group({name, ...rest}:Props){
+export function Group({name, isActive, ...rest}:Props){
   return(
   
       <Pressable
@@ -18,6 +19,7 @@ export function Group({name, ...rest}:Props){
       justifyContent={"center"}
       alignItems={"center"}
       overflow={"hidden"}
+      isPressed={isActive}
       _pressed={{
         borderWidth:"1",
         borderColor:'green.500'
