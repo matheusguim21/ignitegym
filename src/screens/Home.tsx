@@ -5,8 +5,9 @@ import { FlatList, HStack, Heading, VStack, Text } from "native-base"
 import { useState } from "react"
 
 export function Home(){
-  const [groups, setGroups] = useState(['ombros', 'costas', 'bíceps','Tríceps']);
+  const [groups, setGroups] = useState(['costas', 'ombros', 'bíceps','Tríceps']);
   const [groupSelected, setGroupSelected] = useState('costas');
+  const [exercises, setExercises] = useState([{name:'Prancha isométrica', serie:'3 series x 12 repetições', imagem:'https://www.smartfit.com.br/news/wp-content/uploads/2020/09/prancha.jpg'}, {name:'Agachamento no banco', serie:'3 series x 12 repetições',imagem:'https://www.smartfit.com.br/news/wp-content/uploads/2020/09/agachamento-no-banco-perda-de-for%C3%A7a-muscular-e-envelhecimento.jpg'}]);
 
   return(
     <VStack flex={1} >
@@ -20,7 +21,7 @@ export function Home(){
       renderItem={({ item }) => (
         <Group
         name={item}
-        isActive={groupSelected === item}
+        isActive={groupSelected.toLocaleUpperCase() === item.toLocaleUpperCase()}
         onPress={()=> setGroupSelected(item)}/>
       )}
       horizontal
@@ -35,12 +36,21 @@ export function Home(){
           <Heading color={"gray.200"} fontSize={'md'} >
             Exercícios
           </Heading>
-          <Text color={"gray.300"}>4</Text>
+          <Text color={"gray.300"}>{exercises.length}</Text>
   
         </HStack>
 
-        <ExerciseCard />
-        <ExerciseCard/>
+        <FlatList
+        data={exercises}
+        keyExtractor={item => item.name}
+        renderItem={({item})=>
+          <ExerciseCard
+          exercise={item}  />
+      }
+        showsVerticalScrollIndicator={false}
+        
+        />
+        
       </VStack>
 
     </VStack>
