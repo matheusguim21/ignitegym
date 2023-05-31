@@ -2,26 +2,32 @@ import { HStack, Image, VStack, Text, Heading } from "native-base";
 import { TouchableOpacity, TouchableOpacityProps } from "react-native";
 
 type Props = TouchableOpacityProps &{
-
+  exercise:{
+    name: string;
+    serie: string;
+    image: string;
+    }
 }
 
-export function ExerciseCard({...rest}){
+
+export function ExerciseCard( {exercise ,...rest}:Props){
   return(
     <TouchableOpacity {...rest} style={{marginVertical:4}}>
       <HStack backgroundColor={"gray.500"} p={2}  pr={4} alignItems={"center"} rounded={"lg"}>
         <Image 
-        source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDxPLxotcfoa1-BF_Fr00cvvwTdBznp8dKYA&usqp=CAU'}}
+        source={{uri:exercise.image}}
         size={16}
         rounded={'md'}
         alt="Imagem de exercicio"
+        resizeMode="cover"
         
         />
         <VStack mx={4}>
           <Heading fontSize="lg" fontWeight="bold" color={"white"}>
-            Remada Unilateral
+            {exercise.name}
           </Heading>
           <Text color={"gray.200"} mt={1} numberOfLines={2} >
-            3 séries x 12 repetições
+            {exercise.serie}
           </Text>
            
         </VStack>

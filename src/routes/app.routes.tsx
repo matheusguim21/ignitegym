@@ -31,7 +31,7 @@ export function AppRoutes(){
 
   return(
 
-    <Navigator screenOptions={{
+    <Navigator initialRouteName='home' screenOptions={{
       headerShown:false,
       tabBarShowLabel:false,
       tabBarActiveTintColor: colors.green[500],
