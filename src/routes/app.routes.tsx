@@ -31,7 +31,7 @@ export function AppRoutes(){
 
   return(
 
-    <Navigator  initialRouteName='history' screenOptions={{
+    <Navigator initialRouteName='home' screenOptions={{
       headerShown:false,
       tabBarShowLabel:false,
       tabBarActiveTintColor: colors.green[500],
@@ -45,7 +45,7 @@ export function AppRoutes(){
         
       }
     }}>
-      <Screen 
+      <Screen
       name="home"
       component={Home}
       options={{

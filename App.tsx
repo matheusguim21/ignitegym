@@ -5,6 +5,7 @@ import {useFonts, Roboto_400Regular, Roboto_700Bold} from '@expo-google-fonts/ro
 import {THEME} from './src/theme'
 import { Loading } from '@components/Loading';
 import { Routes } from '@routes/index';
+import { AuthRoutes } from '@routes/auth.routes';
 
 
 

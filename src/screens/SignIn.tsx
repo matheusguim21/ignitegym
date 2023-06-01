@@ -5,7 +5,7 @@ import { Image } from "native-base"
 import { AuthNavigatorRoutesProps } from '@routes/auth.routes'
 import LogoSvg from '@assets/logo.svg'
 
-import BackgroundImg from  '@assets/background.png'
+import BackgroundImg from  '@assets/background-login.png'
 import { Input } from "@components/Input"
 import { Button } from "@components/Button"
 
