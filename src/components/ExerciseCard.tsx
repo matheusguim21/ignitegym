@@ -1,34 +1,28 @@
-import { HStack, Image, VStack, Text, Heading, Icon,  } from "native-base";
+import { HStack, Image, VStack, Text, Heading } from "native-base";
 import { TouchableOpacity, TouchableOpacityProps } from "react-native";
-import {Entypo} from "@expo/vector-icons"
-
-
 
 type Props = TouchableOpacityProps &{
-
-}
-type Exercise = {
   exercise:{
-  name:string;
-  serie:string;
-  imagem:string;
-  }
+    name: string;
+    serie: string;
+    image: string;
+    }
 }
 
-export function ExerciseCard({exercise}:Exercise,  { ...rest}){
+
+export function ExerciseCard( {exercise ,...rest}:Props){
   return(
     <TouchableOpacity {...rest} style={{marginVertical:4}}>
       <HStack backgroundColor={"gray.500"} p={2}  pr={4} alignItems={"center"} rounded={"lg"}>
         <Image 
-        source={{uri:exercise.imagem}}
+        source={{uri:exercise.image}}
         size={16}
         rounded={'md'}
         alt="Imagem de exercicio"
-        resizeMode="center"
+        resizeMode="cover"
         
         />
-
-        <VStack mx={4} flex={1}>
+        <VStack mx={4}>
           <Heading fontSize="lg" fontWeight="bold" color={"white"}>
             {exercise.name}
           </Heading>
@@ -37,9 +31,6 @@ export function ExerciseCard({exercise}:Exercise,  { ...rest}){
           </Text>
            
         </VStack>
-
-
-        <Icon as={Entypo} name="chevron-thin-right" />
       </HStack>
     </TouchableOpacity>
   )
