@@ -2,8 +2,10 @@ import { VStack, Text, Heading, HStack, Icon} from "native-base";
 import { UserPhoto } from "./UserPhoto";
 import{ MaterialIcons } from '@expo/vector-icons'
 import { TouchableOpacity } from "react-native";
-
+import { useNavigation } from "@react-navigation/native";
+import {AuthNavigatorRoutesProps} from '@routes/auth.routes'
 export function HomeHeader(){
+  const navigation = useNavigation<AuthNavigatorRoutesProps>()
   return(
     <HStack bg={"gray.600"} pt={16} pb={5} px={8} alignItems={'center'}>
       <UserPhoto
@@ -20,13 +22,13 @@ export function HomeHeader(){
         <Heading color={'gray.100'} fontSize={"xl"} >Matheus</Heading>
       </VStack>
 
-     <TouchableOpacity>
+     <TouchableOpacity onPress={()=> navigation.navigate('signIn')}>
         <Icon
         as={MaterialIcons}
         name="logout"
         color={"gray.200"}
         size={7}
-
+        
         />
      </TouchableOpacity>
     </HStack>

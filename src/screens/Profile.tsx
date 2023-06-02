@@ -2,14 +2,79 @@ import { Button } from "@components/Button";
 import { Input } from "@components/Input";
 import { ScreenHeader } from "@components/ScreenHeader"
 import { UserPhoto } from "@components/UserPhoto"
-import {Center, ScrollView, Text, VStack, Skeleton, Heading} from "native-base"
+import {Center, ScrollView, Text, VStack, Skeleton, Heading, useToast} from "native-base"
 import { useState } from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, Alert } from "react-native";
+import * as ImagePicker from 'expo-image-picker'
+import * as FileSystem from 'expo-file-system'
+
+const PHOTO_SIZE = 33;
+
+
 
 const PHOTO_SIZE = 33;
 export function Profile(){
+  const toast = useToast()
 
   const [photoIsLoading,setPhotoIsLoading] = useState(false)
+  
+  const [userPhoto, setUserPhoto] = useState('https://github.com/matheusguim21.png')
+
+  async function handleUserPhotoSelect(){
+    setPhotoIsLoading(true)
+    
+  try{ 
+
+
+    const photoSelected = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing:true,
+      quality:1,
+      aspect:[4,4],
+      mediaTypes:ImagePicker.MediaTypeOptions.Images
+      
+    })
+    console.log(photoSelected.canceled)
+
+    if(photoSelected.canceled){
+      return;
+    }
+    if(photoSelected.assets[0].uri){
+
+      
+      const photoInfo = await FileSystem.getInfoAsync(photoSelected.assets[0].uri)
+    
+      console.log(photoInfo.size/1024/1024)
+      
+      if(photoInfo.size && (photoInfo.size/1024/1024) > 3){
+        return toast.show({
+          title:'Imagem muito grande. Escolha uma imagem de até 5MB',
+          bgColor:'red.500',
+          placement:'top',
+          duration:3000,
+          rounded:'md',
+          alignSelf:'center'
+        })
+      }
+        toast.show({
+          title:'Imagem alterada com sucesso',
+          bgColor:'green.500',
+          rounded:'md',
+          placement:'top',
+          duration:2000,
+
+        })
+        setUserPhoto(photoSelected.assets[0].uri)
+    }
+
+
+
+  }catch(error){
+    console.log(error)
+  }finally{
+    setPhotoIsLoading(false)
+  }
+}
+
 
   return(
     <VStack flex={1}>
@@ -28,11 +93,11 @@ export function Profile(){
           <UserPhoto 
           size={PHOTO_SIZE}
           alt="Foto de perfil"
-          source={{ uri:'https://www.github.com/matheusguim21.png'}}
+          source={{ uri:userPhoto}}
     
           />}
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleUserPhotoSelect}>
           <Text color={'green.500'} mt={3}>
             Alterar foto
           </Text>

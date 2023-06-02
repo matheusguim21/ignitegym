@@ -36,7 +36,7 @@ export function SignIn(){
         <Input placeholder="E-mail" autoComplete="email" keyboardType="email-address" autoCapitalize="none"/>
         <Input placeholder="Senha" autoComplete="password" secureTextEntry/>
         
-        <Button title="Acessar"/>
+        <Button title="Acessar" onPress={()=> navigation.navigate('main')}/>
         </Center>
   
         <Center mt={20}>
