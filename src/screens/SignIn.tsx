@@ -5,7 +5,7 @@ import { Image } from "native-base"
 import { AuthNavigatorRoutesProps } from '@routes/auth.routes'
 import LogoSvg from '@assets/logo.svg'
 
-import BackgroundImg from  '@assets/background-login.png'
+import BackgroundImg from  '@assets/background.png'
 import { Input } from "@components/Input"
 import { Button } from "@components/Button"
 
@@ -36,7 +36,7 @@ export function SignIn(){
         <Input placeholder="E-mail" autoComplete="email" keyboardType="email-address" autoCapitalize="none"/>
         <Input placeholder="Senha" autoComplete="password" secureTextEntry/>
         
-        <Button title="Acessar"/>
+        <Button title="Acessar" onPress={()=> navigation.navigate('main')}/>
         </Center>
   
         <Center mt={20}>
