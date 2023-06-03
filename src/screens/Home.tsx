@@ -7,7 +7,7 @@ import { useState } from "react"
 import  {AppNavigatorRoutesProps} from '@routes/app.routes'
 
 export function Home(){
-  const [groups, setGroups] = useState(['costas','ombros', 'bíceps','Tríceps']);
+  const [groups, setGroups] = useState(['Segunda','Terça', 'Quarta','Quinta', 'Sábado', 'Domingo']);
   const [groupSelected, setGroupSelected] = useState('costas');
   const [exercises, setExercises] = useState([
     {
@@ -57,7 +57,7 @@ export function Home(){
           <Heading color={"gray.200"} fontSize={'md'} >
             Exercícios
           </Heading>
-          <Text color={"gray.300"}>4</Text>
+          <Text color={"gray.200"} fontSize={'md'}>{exercises.length}</Text>
   
         </HStack>
 

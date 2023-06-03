@@ -9,10 +9,7 @@ export function History() {
       title: '26.08.22',
       data: ["Puxada frontal", "Remada unilateral"]
     },
-    {
-      title: '27.08.22',
-      data: ["Puxada frontal"]
-    }
+   
   ]);
   return (
     <VStack flex={1}>

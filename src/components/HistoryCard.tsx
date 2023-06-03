@@ -7,7 +7,7 @@ export function HistoryCard(){
     <HStack bg={'gray.600'} w={"full"} px={5} py={4} mb={3} alignItems={'center'} justifyContent={'space-between'} rounded={"md"} >
       <VStack mr={4} flex={1}  >
         <Heading textTransform={"capitalize"} color={'white'} numberOfLines={1}>
-          Costas
+          Segunda
         </Heading>
 
         <Text color={'gray.100'} fontSize={"lg"} numberOfLines={1}>

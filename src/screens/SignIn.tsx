@@ -3,7 +3,7 @@ import { Text, VStack, Center, Heading, ScrollView } from "native-base"
 import { Image } from "native-base"
 
 import { AuthNavigatorRoutesProps } from '@routes/auth.routes'
-import LogoSvg from '@assets/logo.svg'
+import Logo from "@assets/logoRevitalia.png"
 
 import BackgroundImg from  '@assets/background-login.png'
 import { Input } from "@components/Input"
@@ -22,15 +22,23 @@ export function SignIn(){
         <Image
         source={BackgroundImg}
         alt={'Pessoas treinando'}
-        resizeMode="contain"
+        resizeMode="cover"
         position={'absolute'}
+        size={'full'}
         />
         <Center my={24} >
-          <LogoSvg/>
+          <Image
+          source={Logo}
+          size={32}
+          resizeMode='contain'
+          alt='Logo'
+          mb={-5}
+          />
+          <Text color={"white"} fontSize={"xl"}>Revitalia</Text>
           <Text color={"gray.100"} fontSize={"sm"}>Treine a sua mente e o seu corpo</Text>
         </Center>
   
-      <Center mt={32}>
+      <Center >
         <Heading color={"gray.100"} mb={6} fontSize={'xl'} fontFamily={"heading"}>Acesse sua conta</Heading>
   
         <Input placeholder="E-mail" autoComplete="email" keyboardType="email-address" autoCapitalize="none"/>

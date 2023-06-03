@@ -2,9 +2,9 @@ import {useNavigation} from '@react-navigation/native'
 import { Text, VStack, Center, Heading, ScrollView } from "native-base"
 import { Image } from "native-base"
 import { AuthNavigatorRoutesProps } from '@routes/auth.routes'
-import LogoSvg from '@assets/logo.svg'
+import Logo from '@assets/logoRevitalia.png'
 
-import BackgroundImg from  '@assets/background.png'
+import BackgroundImg from  '@assets/background-login.png'
 import { Input } from "@components/Input"
 import { Button } from "@components/Button"
 
@@ -19,14 +19,22 @@ export function SignUp(){
       flex={1}
       >
         <Image
-          source={BackgroundImg}
-          resizeMode="contain"
-          position={'absolute'}
-          alt='Pessoas treinando'
-        ></Image>
+        source={BackgroundImg}
+        alt={'Pessoas treinando'}
+        resizeMode="cover"
+        position={'absolute'}
+        size={'full'}
+        />
         
         <Center my={24}>
-          <LogoSvg/>
+        <Image
+          source={Logo}
+          size={32}
+          resizeMode='contain'
+          alt='Logo'
+          mb={-5}
+          />
+          <Text color={"white"} fontSize={"2xl"}>Revitalia</Text>
           <Text color={'gray.100'}  fontFamily={'heading'} fontSize={'sm'}>Treine sua mente e seu corpo</Text>
         </Center>
 
@@ -51,7 +59,7 @@ export function SignUp(){
         </Center>
 
         <Center>
-          <Button title="Criar e acessar"/>
+          <Button title="Criar e acessar" onPress={()=>navigation.navigate('main')}/>
         </Center>
 
         <Center mt={8}>

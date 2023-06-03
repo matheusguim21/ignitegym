@@ -22,8 +22,8 @@ export function Input({...rest}:IInputProps){
       _focus={{
         // bgColor:'gray.600',
         borderWidth:1,
-        borderColor:'gray.400',
-        borderBottomColor:'green.500'
+        borderColor:'green.500',
+        
       }}
       
       {...rest}

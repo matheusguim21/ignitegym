@@ -10,9 +10,9 @@ export  function Button({title, variant = 'solid', ...rest}:Props){
   return(
     <NativeBaseButton
     width={348}
-    bgColor={variant === 'outline' ? 'transparent' : 'green.700'}
+    bgColor={variant === 'outline' ? 'transparent' : 'green.500'}
     borderWidth={variant === 'outline'? 1 : 0}
-    borderColor={variant === 'outline'? 'green.700' : 'transparent'}
+    borderColor={variant === 'outline'? 'green.500' : 'transparent'}
     height={14}
     rounded='sm'
     mb={10}

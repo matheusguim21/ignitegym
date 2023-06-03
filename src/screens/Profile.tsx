@@ -12,7 +12,7 @@ const PHOTO_SIZE = 33;
 
 
 
-const PHOTO_SIZE = 33;
+
 export function Profile(){
   const toast = useToast()
 
@@ -137,7 +137,15 @@ export function Profile(){
           secureTextEntry
           />
 
-          <Button title="Atualizar dados"/>
+          <Button title="Alterar Senha" onPress={()=> toast.show({
+            title:'Senha alterada com sucesso',
+            placement:'bottom',
+            bgColor:'green.500',
+            rounded:'md',
+            duration:2000,
+            marginBottom:5
+
+          })}/>
           </Center>
         
      </ScrollView>
