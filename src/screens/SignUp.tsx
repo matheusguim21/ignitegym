@@ -1,94 +1,65 @@
-import { Text, VStack, Center, Heading, ScrollView, View, Box, HStack } from "native-base"
+import {useNavigation} from '@react-navigation/native'
+import { Text, VStack, Center, Heading, ScrollView } from "native-base"
 import { Image } from "native-base"
+import { AuthNavigatorRoutesProps } from '@routes/auth.routes'
+import LogoSvg from '@assets/logo.svg'
 
-import LogoSvg from '@assets/icon_vazada.png'
-
-import BackgroundImg from  '@assets/fundo-app-socinpro.png'
+import BackgroundImg from  '@assets/background.png'
 import { Input } from "@components/Input"
 import { Button } from "@components/Button"
-import { useNavigation } from "@react-navigation/native"
-import { AuthNavigatorRoutesProps } from "@routes/auth.routes"
-
 
 export function SignUp(){
+
   const navigation = useNavigation<AuthNavigatorRoutesProps>()
+
   return(
     <ScrollView  contentContainerStyle={{flexGrow:1}}>
       <VStack 
-      backgroundColor={'gray.700'}
+      
       flex={1}
       >
         <Image
           source={BackgroundImg}
           resizeMode="contain"
           position={'absolute'}
-          alt='Imagem de fund'
+          alt='Pessoas treinando'
         ></Image>
         
-        <Center mt={"10"}>
-          <Image 
-          source={LogoSvg}
-          resizeMode="stretch"
-          width={300}
-          height={200}
-          borderWidth={0}
-          alt="Logo Socinpro"
-
-          
-          ></Image>
-          <Text mt={-9} color={'gray.100'}  fontFamily={'heading'} fontSize={'sm'}>Protegendo seus direitos</Text>
+        <Center my={24}>
+          <LogoSvg/>
+          <Text color={'gray.100'}  fontFamily={'heading'} fontSize={'sm'}>Treine sua mente e seu corpo</Text>
         </Center>
 
         <Center mt={6}>
-          <Heading  mb={3} color={"gray.100"} fontFamily={"heading"} fontSize={'xl'} >Crie sua conta</Heading>
+          <Heading mt={36} mb={3} color={"white"} fontFamily={"heading"} fontSize={'xl'} >Crie sua conta</Heading>
         </Center>
 
-        <Center mt={4}>
-          
-      
-          <HStack flex={1} >
-            <Input mx={2}
-            placeholder="CPF ou CNPJ"
-            color={'green.500'}
-            keyboardType="number-pad"
-            variant={'CPF'}
-            ></Input>
-            <Input mx={2}
-            placeholder="Código SOC"
-            keyboardType="number-pad"
-            variant={'SOC'}
-            color={'blue.400'}
-            ></Input>
-          </HStack>
+        <Center my={4}>
           <Input 
-          placeholder="Nome de apresentação"
-          keyboardType="default"
-      
+          placeholder="Nome"
           ></Input>
           <Input 
-          placeholder="Nome de usuário"
-        keyboardType="default"
+          placeholder="E-mail"
           ></Input>
           <Input 
           placeholder="Senha"
-          keyboardType="default"
-          secureTextEntry
           ></Input>
           <Input 
           placeholder="Confirme a senha"
-          keyboardType="default"
-          secureTextEntry
           ></Input>
 
         </Center>
 
-        <Center mt={4}>
+        <Center>
           <Button title="Criar e acessar"/>
-        </Center >
+        </Center>
 
-        <Center mt={0 } mb={-8}>
-          <Text  mb={2}fontFamily={'mono'} fontSize={'md'} color={'gray.100'}>Já tem cadastro?</Text>
-          <Button title="Voltar para o login" variant={'outline'} onPress={()=> navigation.navigate('signIn')} ></Button>
+        <Center mt={8}>
+          <Button 
+          title="Voltar para o login" 
+          variant={'outline'}
+          onPress={()=> navigation.goBack()}
+          ></Button>
         </Center>
 
 

@@ -1,33 +1,38 @@
-import { createNativeStackNavigator, NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { SignIn } from "@screens/SignIn";
-import { SignUp } from "@screens/SignUp";
-import { ResetPassword } from "@screens/ResetPassword";
+import { createNativeStackNavigator, NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { Exercise } from '@screens/Exercise';
+import { SignIn } from '@screens/SignIn';
+import { SignUp } from '@screens/SignUp';
+import { AppRoutes } from './app.routes';
 
-type AuthRoutes = {
+type AuthRoutes ={
   signIn:undefined
   signUp:undefined
-  resetPassword:undefined
+  main:undefined
+
 }
+
 export type AuthNavigatorRoutesProps = NativeStackNavigationProp<AuthRoutes>
 
+const { Navigator, Screen} = createNativeStackNavigator<AuthRoutes>();
 
 export function AuthRoutes(){
-  const {Navigator, Screen} = createNativeStackNavigator<AuthRoutes>()
   return(
-    <Navigator screenOptions={{headerShown:false}}>
+    <Navigator screenOptions={{headerShown:false}} initialRouteName='signIn'>
       <Screen
-      name="signIn"
-      component={SignIn}
+      name='signIn'
+      component={SignIn}      
       />
       <Screen
-      name="signUp"
-      component={SignUp}
+      name='signUp'
+      component={SignUp}      
       />
       <Screen
-      name="resetPassword"
-      component={ResetPassword}
+      name='main'
+      component={AppRoutes}      
       />
-
+      
     </Navigator>
+
   )
 }
+
