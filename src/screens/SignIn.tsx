@@ -9,11 +9,21 @@ import BackgroundImg from  '@assets/background.png'
 import { Input } from "@components/Input"
 import { Button } from "@components/Button"
 
+type FormDataProps ={
+  name:string,
+  email:string,
+  password:string,
+  confirmPassword:string
+}
+
 
 export function SignIn(){
 
   const navigation = useNavigation<AuthNavigatorRoutesProps>()
 
+  function handleSignIn(){
+    navigation.navigate('main')
+  }
 
   return(
     
@@ -34,12 +44,18 @@ export function SignIn(){
         <Heading color={"gray.100"} mb={6} fontSize={'xl'} fontFamily={"heading"}>Acesse sua conta</Heading>
   
         <Input placeholder="E-mail" autoComplete="email" keyboardType="email-address" autoCapitalize="none"/>
-        <Input placeholder="Senha" autoComplete="password" secureTextEntry/>
+        <Input 
+        placeholder="Senha" 
+        autoComplete="password" 
+        secureTextEntry
+        returnKeyType='send'
+        onSubmitEditing={handleSignIn}
+        />
         
-        <Button title="Acessar" onPress={()=> navigation.navigate('main')}/>
+        <Button mt={10} title="Acessar" onPress={()=> navigation.navigate('main')}/>
         </Center>
   
-        <Center mt={20}>
+        <Center mt={18}>
           <Text 
             color={'gray.100'}
             mb={4}
@@ -49,6 +65,7 @@ export function SignIn(){
           title="Criar conta" 
           variant={'outline'}
           onPress={()=> navigation.navigate('signUp')}
+        
           />
         </Center>
   
