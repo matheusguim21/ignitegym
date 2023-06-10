@@ -8,6 +8,7 @@ import { TouchableOpacity, Alert } from "react-native";
 import * as ImagePicker from 'expo-image-picker'
 import * as FileSystem from 'expo-file-system'
 
+
 const PHOTO_SIZE = 33;
 
 
@@ -101,6 +102,8 @@ export function Profile(){
             Alterar foto
           </Text>
         </TouchableOpacity>
+
+        
         <Input mt={10}
         bgColor='gray.600'
         placeholder="Nome"
