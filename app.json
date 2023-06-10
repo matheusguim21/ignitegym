@@ -10,7 +10,6 @@
       "image": "./assets/logoRevitalia.png",
       "resizeMode": "contain",
       "backgroundColor": "#0f0f0f"
-      
     },
     "plugins": [
       [
@@ -24,16 +23,26 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.matheusguim.ignitegym"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#121214"
-      }
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.matheusguim.ignitegym"
     },
     "web": {
       "favicon": "./assets/logoRevitalia.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "005c7860-116f-4653-a018-6af3909c4905"
+      }
     }
   }
 }
