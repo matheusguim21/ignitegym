@@ -3,6 +3,7 @@ import {useNavigation} from '@react-navigation/native'
 import { Text, VStack,HStack, Center, Heading, ScrollView } from "native-base"
 import { Image } from "native-base"
 import { AuthNavigatorRoutesProps } from '@routes/auth.routes'
+import {AppNavigatorRoutesProps, AppRoutes} from '@routes/app.routes'
 import LogoSocinpro from '@assets/logos/LogoSocinpro.png'
 
 import BackgroundImg from  '@assets/backgrounds/SignIn.jpg'
@@ -15,7 +16,7 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { ShowPasswordButton } from '@components/ShowPasswordButton'
 
-type FormDataProps ={
+export type FormDataProps ={
   username:string,
   password:string,
  
@@ -31,13 +32,16 @@ export function SignIn(){
   const navigation = useNavigation<AuthNavigatorRoutesProps>()
 
   function handleSignIn(data:FormDataProps){
-    console.info(data)
-    navigation.navigate('main')
+    console.info(data.username)
+    navigation.navigate('main',{
+    name:data.username
+   })
     clearErrors(['username', 'password'])
+
     
   
   }
- const  handleSignUp = ()=>{
+ const  handleSignUp = (data:FormDataProps)=>{
   navigation.navigate('signUp')
   clearErrors(['username', 'password'])
  }

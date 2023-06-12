@@ -7,6 +7,9 @@ import { useState } from "react";
 import { TouchableOpacity, Alert } from "react-native";
 import * as ImagePicker from 'expo-image-picker'
 import * as FileSystem from 'expo-file-system'
+import { useRoute } from "@react-navigation/native";
+import UserPhotoDefault from '@assets/userPhotoDefault.png'
+
 
 
 const PHOTO_SIZE = 33;
@@ -14,12 +17,14 @@ const PHOTO_SIZE = 33;
 
 
 export function Profile(){
+
   const toast = useToast()
 
   const [photoIsLoading,setPhotoIsLoading] = useState(false)
   
-  const [userPhoto, setUserPhoto] = useState('https://github.com/matheusguim21.png')
+const [userPhoto, setUserPhoto] = useState()
 
+  
   async function handleUserPhotoSelect(){
     setPhotoIsLoading(true)
     
@@ -64,6 +69,8 @@ export function Profile(){
 
         })
         setUserPhoto(photoSelected.assets[0].uri)
+        {console.info(userPhoto)}
+
     }
 
 
@@ -75,6 +82,7 @@ export function Profile(){
   }
 }
 
+const route = useRoute()
 
   return(
     <VStack flex={1}>
@@ -93,7 +101,7 @@ export function Profile(){
           <UserPhoto 
           size={PHOTO_SIZE}
           alt="Foto de perfil"
-          source={{ uri:userPhoto}}
+          source={userPhoto ? {uri:userPhoto}: UserPhotoDefault}
     
           />}
 
@@ -107,13 +115,12 @@ export function Profile(){
         <Input mt={10}
         bgColor='gray.600'
         placeholder="Nome"
-        defaultValue="Matheus Guimarães"
+        defaultValue={route.params.name}
         />
         <Input 
         bgColor='gray.600'
         placeholder="Email"
-        isDisabled 
-        defaultValue="matheusguim13@gmail.com"
+        defaultValue={route.params.email}
         />
 
       
@@ -139,7 +146,7 @@ export function Profile(){
           secureTextEntry
           />
 
-          <Button title="Atualizar dados"/>
+          <Button mt={12} title="Atualizar dados"/>
           </Center>
         
      </ScrollView>

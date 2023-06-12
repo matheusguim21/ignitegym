@@ -7,7 +7,11 @@ import { AppRoutes } from './app.routes';
 type AuthRoutes ={
   signIn:undefined
   signUp:undefined
-  main:undefined
+  main:{
+    name:string;
+    password?:string
+    email?:string
+  }
 
 }
 

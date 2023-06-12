@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "ignitegym",
+    "name": "SocinproApp",
     "slug": "ignitegym",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logoRevitalia.png",
-    "userInterfaceStyle": "light",
+    "icon": "./assets/LogoSocinpro.png",
+    "userInterfaceStyle": "auto",
     "splash": {
-      "image": "./assets/logoRevitalia.png",
+      "image": "./assets/LogoSocinpro.png",
       "resizeMode": "contain",
       "backgroundColor": "#0f0f0f"
     },
@@ -24,20 +24,20 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.matheusguim.ignitegym"
+      "bundleIdentifier": "com.matheusguim.socinpro"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#121214"
+        "foregroundImage": "./assets/LogoSocinpro.png",
+        "backgroundColor": "##302f2f"
       },
       "permissions": [
         "android.permission.RECORD_AUDIO"
       ],
-      "package": "com.matheusguim.ignitegym"
+      "package": "com.matheusguim.socinproapp"
     },
     "web": {
-      "favicon": "./assets/logoRevitalia.png"
+      "favicon": "./assets/LogoSocinpro.png"
     },
     "extra": {
       "eas": {

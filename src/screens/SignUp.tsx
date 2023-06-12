@@ -11,7 +11,7 @@ import { Button } from "@components/Button"
 import {useForm, Controller,} from  'react-hook-form'
 import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
-import { useState } from 'react'
+import { useState, } from 'react'
 import { ShowPasswordButton } from '@components/ShowPasswordButton'
 
 
@@ -43,18 +43,17 @@ export function SignUp(){
    
     console.log(data)
     
-    navigation.navigate('main')
+    navigation.navigate('main',{
+      name:data.name, password:data.password, email:data.email})
   }
 
   const [senhaVisivel, setSenhaVisivel] = useState(false)
   const handleMostrarSenha = () => {
     setSenhaVisivel(!senhaVisivel);
   };
-  const [senhaVisivel2, setSenhaVisivel2] = useState(false)
-  const handleMostrarSenha2 = () => {
-    setSenhaVisivel2(!senhaVisivel2);
-  };
+  
  
+
 
    
 

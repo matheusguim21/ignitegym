@@ -1,7 +1,7 @@
 import {Image, HStack, Heading, Icon, Box, VStack, Text, ScrollView} from "native-base"
 import { TouchableOpacity } from "react-native"
 import {Feather} from '@expo/vector-icons'
-import { useNavigation } from "@react-navigation/native"
+import { useNavigation, useRoute } from "@react-navigation/native"
 import BodySvg from '@assets/body.svg'
 import SeriesSvg from '@assets/series.svg'
 import RepetitionsSvg from "@assets/repetitions.svg"
@@ -10,6 +10,8 @@ import { Button } from "@components/Button"
 
 export function Exercise(){
   const navigation = useNavigation()
+  const route = useRoute()
+  console.log(route.params)
   function handleBackButton(){
     navigation.goBack()
   }
@@ -40,13 +42,13 @@ export function Exercise(){
 
           <HStack mt={3} mb={8} px={4} justifyContent={'space-between'} alignItems={"center"} >
             <Heading color={'gray.100'} fontSize="lg" flexShrink={1}>
-              Puxada frontal 
+              {route.params.obra.name}
             </Heading>
 
             <HStack alignItems={"center"}>
               <BodySvg/>
               <Heading textTransform={"capitalize"} color={'gray.200'} ml={1} fontSize={"md"} >
-                costas
+                {route.params.obra.autor}
               </Heading>
             </HStack>
           </HStack>
@@ -63,31 +65,10 @@ export function Exercise(){
           mb={3}
           rounded={"lg"}
   
-          source={{uri:'https://conteudo.imguol.com.br/c/entretenimento/0c/2019/12/03/remada-unilateral-com-halteres-1575402100538_v2_600x600.jpg'}}
+          source={{uri:route.params.obra.image}}
           />
   
-          <Box bg={'gray.500'}px={10} py={4} rounded={"lg"}>
-            <VStack  alignItems={"center"}
-            justifyContent={"space-around"}>
-              <HStack justifyContent={"center"} alignItems={"center"} mb={10}>
-                <HStack alignItems={"center"}>
-                  <SeriesSvg />
-                  <Text color={'gray.200'} ml={3} mr={8} fontSize={"lg"}>
-                    3 séries
-                  </Text>
-                </HStack>
-                
-                <HStack alignItems={"center"}>
-                  <RepetitionsSvg/>
-                  <Text color={"gray.200"} ml={3} fontSize={"lg"}>
-                    2 repetições
-                  </Text>
-                </HStack>
-              </HStack>
-  
-              <Button title="Marcar como concluído" width={320} marginBottom={1}/>
-            </VStack>
-          </Box>
+         
   
         </VStack>
       </ScrollView>
