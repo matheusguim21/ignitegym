@@ -12,7 +12,7 @@ type Props = TouchableOpacityProps &{
 
 export function ExerciseCard( {obra ,...rest}:Props){
   return(
-    <TouchableOpacity {...rest} style={{marginVertical:4}}>
+    <TouchableOpacity {...rest} style={{marginVertical:4, marginBottom:10}}>
       <HStack backgroundColor={"gray.500"} p={2}  pr={4} alignItems={"center"} rounded={"lg"}>
         <Image 
         source={{uri:obra.image}}
