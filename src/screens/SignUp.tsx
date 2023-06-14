@@ -38,7 +38,7 @@ export function SignUp(){
   const navigation = useNavigation<AuthNavigatorRoutesProps>()
 
   function handleSignUp(data:FormDataProps){
-   
+    
     console.log(data)
     
     navigation.navigate('main')
