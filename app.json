@@ -5,11 +5,11 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/LogoSocinpro.png",
-    "userInterfaceStyle": "auto",
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/LogoSocinpro.png",
       "resizeMode": "contain",
-      "backgroundColor": "#0f0f0f"
+      "backgroundColor": "##2c2c2c"
     },
     "plugins": [
       [
@@ -29,15 +29,15 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/LogoSocinpro.png",
-        "backgroundColor": "##302f2f"
+        "backgroundColor": "#121214"
       },
       "permissions": [
         "android.permission.RECORD_AUDIO"
       ],
-      "package": "com.matheusguim.socinproapp"
+      "package": "com.matheusguim.ignitegym"
     },
     "web": {
-      "favicon": "./assets/LogoSocinpro.png"
+      "favicon": "./assets/logoRevitalia.png"
     },
     "extra": {
       "eas": {
