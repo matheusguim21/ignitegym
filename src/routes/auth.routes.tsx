@@ -1,5 +1,5 @@
 import { createNativeStackNavigator, NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { Exercise } from '@screens/Exercise';
+import { Exercise } from '@screens/Obras';
 import { SignIn } from '@screens/SignIn';
 import { SignUp } from '@screens/SignUp';
 import { AppRoutes } from './app.routes';

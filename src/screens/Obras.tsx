@@ -3,18 +3,35 @@ import { TouchableOpacity } from "react-native"
 import {Feather} from '@expo/vector-icons'
 import { useNavigation, useRoute } from "@react-navigation/native"
 import BodySvg from '@assets/body.svg'
-import SeriesSvg from '@assets/series.svg'
-import RepetitionsSvg from "@assets/repetitions.svg"
-import { Button } from "@components/Button"
+import { ItemProps } from "./Fonogramas"
+import { AppNavigatorRoutesProps } from "@routes/app.routes"
 
 
-export function Exercise(){
-  const navigation = useNavigation()
-  const route = useRoute()
-  console.log(route.params)
+
+type RouteParams ={
+  
+  params:{name:string,
+  password:string,
+  obra:ItemProps
+},
+  name:string;
+  path:string;
+  key:string;
+  
+} 
+
+
+
+export function Obra(){
+  const navigation = useNavigation<AppNavigatorRoutesProps>()
+  const route = useRoute<RouteParams>()
+
+
   function handleBackButton(){
     navigation.goBack()
   }
+
+
   return(
     <VStack flex={1}>
       <VStack px={2} bgColor={'gray.600'} pt={12}>

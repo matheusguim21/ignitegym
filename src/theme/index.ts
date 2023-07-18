@@ -5,7 +5,7 @@ export const THEME  = extendTheme(
     colors: {
       green: {
         700: '#00875F',
-        500: '#00B37E',
+        500:'#00954a'
       },
       gray: {
         700: '#121214',

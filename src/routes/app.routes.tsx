@@ -2,36 +2,39 @@ import {Platform} from 'react-native'
 import { createBottomTabNavigator, BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { Box, Center, useTheme, Text } from "native-base";
 import { Home } from "@screens/Home";
-import { Exercise } from "@screens/Exercise";
-import { History } from "@screens/History";
+import { Obra } from "@screens/Obras";
 import { Profile } from "@screens/Profile";
 
 import HomeSvg from '@assets/home.svg'
-import HistorySvg from '@assets/history.svg'
+import FonogramaSvg from '@assets/fonograma1.svg'
 import ProfileSvg from '@assets/profile.svg'
 import {useRoute} from '@react-navigation/native'
+import { Fonogramas } from '@screens/Fonogramas';
 
 type AppRoutes ={
-  exercise: {
-    obra:{
-      name:string
-      autor:string
-      image:string
-    }
-  }
-  history:undefined
+
   home:{
     name:string
     password:string
     email?:string
     photo:string
-  }
+  },
+  fonogramas:undefined;
   profile:{
     name:string
     password:string
     photo?:string
     email?:string
   }
+
+  Card:{
+
+    obra:{name:string;
+    autor:string;
+    image:string;
+    ano:string;
+    codigo:string;
+}}
   }
 
   
@@ -51,7 +54,7 @@ export function AppRoutes(){
   route.params
   return(
 
-    <Navigator  initialRouteName='home' screenOptions={{
+    <Navigator   screenOptions={{
       headerShown:false,
       tabBarShowLabel:false,
       tabBarActiveTintColor: colors.green[500],
@@ -70,6 +73,7 @@ export function AppRoutes(){
       name="home"
       component={Home}
       options={{
+        
         tabBarIcon:({color})=> (
           <Box   // envolve o icone para dar uma area de toque maior do que a do icone
           width={24}
@@ -92,8 +96,8 @@ export function AppRoutes(){
       
       />
       <Screen
-      name="history"
-      component={History}
+      name="fonogramas"
+      component={Fonogramas}
       options={{tabBarIcon:({color})=>(
 
         <Box  // envolve o icone para dar uma area de toque maior do que a do icone
@@ -103,15 +107,22 @@ export function AppRoutes(){
         justifyContent={'center'}
         alignItems={'center'}
         marginBottom={-5}
-        ><HistorySvg fill={color} width={iconSize} height={iconSize}/>
+        ><FonogramaSvg fill={color} width={'100%'} height={iconSize}/>
         <Text
           color={'white'}
           fontSize={'xs'}
-          >Histórico</Text>
-        </Box
-       >
+          >Fonogramas</Text>
+        </Box>
       )}}
       />
+    <Screen
+      name="Card"
+      component={Obra}
+      options={{
+        tabBarButton:()=> null
+      }}
+      />
+
       <Screen
       name="profile"
       component={Profile}
@@ -131,13 +142,7 @@ export function AppRoutes(){
           >Perfil</Text></Box>
       )}}
       />
-      <Screen
-      name="exercise"
-      component={Exercise}
-      options={{
-        tabBarButton:()=> null
-      }}
-      />
+      
     </Navigator>
 
   )

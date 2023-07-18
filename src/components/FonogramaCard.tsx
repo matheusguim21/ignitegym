@@ -10,7 +10,7 @@ type Props = TouchableOpacityProps &{
 }
 
 
-export function ExerciseCard( {obra ,...rest}:Props){
+export function FonogramaCard( {obra ,...rest}:Props){
   return(
     <TouchableOpacity {...rest} style={{marginVertical:4, marginBottom:10}}>
       <HStack backgroundColor={"gray.500"} p={2}  pr={4} alignItems={"center"} rounded={"lg"}>
@@ -18,7 +18,7 @@ export function ExerciseCard( {obra ,...rest}:Props){
         source={{uri:obra.image}}
         size={16}
         rounded={'md'}
-        alt="Imagem de exercicio"
+        alt="Capa obra/fonograma"
         resizeMode="cover"
         
         />
