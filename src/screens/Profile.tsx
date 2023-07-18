@@ -9,6 +9,7 @@ import * as ImagePicker from 'expo-image-picker'
 import * as FileSystem from 'expo-file-system'
 import { useRoute } from "@react-navigation/native";
 import UserPhotoDefault from '@assets/userPhotoDefault.png'
+import colors from "native-base/lib/typescript/theme/base/colors";
 
 const PHOTO_SIZE = 33;
 
@@ -138,7 +139,16 @@ export function Profile() {
             secureTextEntry
           />
 
-          <Button mt={12} title="Atualizar dados" />
+          <Button mt={12} title="Atualizar dados" onPress={()=>{
+            toast.show({
+              title:'Seus dados foram atualizados',
+              bgColor:'green.500',
+              rounded: 'md',
+              placement: 'top',
+              duration: 1500,
+              
+            })
+          }} />
         </Center>
       </ScrollView>
     </VStack>

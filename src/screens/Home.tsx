@@ -137,10 +137,10 @@ export function Home(){
             // borderColor={'amber.300'}
 
             >
-              <HStack>
+              <HStack marginTop={4}>
                 <MoneySvg
-                width={'50px'} 
-                height={'50px'}
+                width={'60px'} 
+                height={'60px'}
                 />
                 <VStack
                 marginLeft={4}
@@ -148,12 +148,12 @@ export function Home(){
                   <Text
                   color={'gray.200'}
                   fontWeight={"bold"}
-                  fontSize={'md'}
+                  fontSize={'lg'}
                   
                   >Saldo Atual: </Text>
                   <Text
                   color={"amber.300"}
-                  fontSize={'md'}
+                  fontSize={'lg'}
                   >R$ 100,00</Text>
                 </VStack>
               </HStack>
