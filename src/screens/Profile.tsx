@@ -23,6 +23,8 @@ type Props = {
   }
 }
 
+export let userPhotoProfile:string| undefined = ''
+
 export function Profile() {
 
   const toast = useToast()
@@ -67,7 +69,7 @@ export function Profile() {
           placement: 'top',
           duration: 2000,
         });
-
+         userPhotoProfile = photoSelected.assets[0].uri
         setUserPhoto(photoSelected.assets[0].uri);
         console.info(userPhoto);
       }
@@ -93,9 +95,9 @@ export function Profile() {
               endColor={'gray.400'}
             /> :
             <UserPhoto
+              source={{uri:userPhoto}}
               size={PHOTO_SIZE}
               alt="Foto de perfil"
-              source={userPhoto ? { uri: userPhoto } : UserPhotoDefault}
             />
           }
 

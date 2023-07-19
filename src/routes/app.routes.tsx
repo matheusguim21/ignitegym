@@ -6,7 +6,7 @@ import { Obra } from "@screens/Obras";
 import { Profile } from "@screens/Profile";
 
 import HomeSvg from '@assets/home.svg'
-import FonogramaSvg from '@assets/fonograma1.svg'
+import FonogramaSvg from '@assets/icons/fonograma1.svg'
 import ProfileSvg from '@assets/profile.svg'
 import {useRoute} from '@react-navigation/native'
 import { Fonogramas } from '@screens/Fonogramas';

@@ -1,16 +1,30 @@
 import { Group } from "@components/Group"
 import { HomeHeader } from "@components/HomeHeader"
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { FlatList, HStack, Heading, VStack, Text, Image, Box, Center } from "native-base"
+import { FlatList, HStack, Heading, VStack, Text, Image, Box, Center, theme } from "native-base"
 import { useState } from "react"
+import { useToast } from "native-base";
+import { Modal } from "react-native";
 import  {AppNavigatorRoutesProps, AppRoutes} from '@routes/app.routes'
+import * as ImagePicker from 'expo-image-picker'
+import * as FileSystem from 'expo-file-system'
+
+
+
+import { UserPhoto } from "@components/UserPhoto";
 import LogoSocinpro from '@assets/logos/LogoSocinpro.png'
 import LogoSocinproSemNome from '@assets/logos/logosemnome.png'
 import LogoECAD from '@assets/logos/logo-ecad-home.svg'
 import MoneySvg from'@assets/icons/money.svg'
+import BankSvg from '@assets/icons/bank.svg'
+import DetailsSvg  from '@assets/icons/details.svg'
+
+
+
 
 import {UserPhotoDefault} from '@assets/userPhotoDefault.png'
 import dayjs from "dayjs";
+import { TouchableOpacity } from "react-native";
 
 type ItemProps={
   name:string;
@@ -31,24 +45,90 @@ type RouteParams ={
   
 } 
 
+
 const today = dayjs().format('DD/MM/YYYY')
 
+const PHOTO_SIZE = 20;
+
+
+
+
 export function Home(){
+
+  const toast = useToast()
+
+
+  async function handleUserPhotoSelect() {
+
+    try {
+      const photoSelected = await ImagePicker.launchImageLibraryAsync({
+        allowsEditing: true,
+        quality: 1,
+        aspect: [4, 4],
+        mediaTypes: ImagePicker.MediaTypeOptions.Images
+      });
+
+      if (photoSelected.canceled) {
+        return;
+      }
+
+      if (photoSelected.assets[0].uri) {
+        const photoInfo = await FileSystem.getInfoAsync(photoSelected.assets[0].uri);
+
+        if (photoInfo.exists && photoInfo.size && (photoInfo.size / 1024 / 1024) > 10) {
+          return toast.show({
+            title: 'Imagem muito grande. Escolha uma imagem de até 5MB',
+            bgColor: 'red.500',
+            placement: 'top',
+            duration: 3000,
+            rounded: 'md',
+            alignSelf: 'center'
+          });
+        }
+
+        toast.show({
+          title: 'Imagem alterada com sucesso',
+          bgColor: 'green.500',
+          rounded: 'md',
+          placement: 'top',
+          duration: 2000,
+        });
+
+        setUserPhoto(photoSelected.assets[0].uri);
+        
+      }
+    } catch (error) {
+      console.log(error);
+    } 
+  }
   
-  
-  
+  const [bank, setbank] = useState('Bradesco')
+  const [changePhotoVisible, setChangePhotoVisible] = useState(false)
+  const [userPhoto, setUserPhoto] = useState<string | undefined>(undefined);
 
   const navigation = useNavigation<AppNavigatorRoutesProps>();
-
  
 
   const route = useRoute<RouteParams>()
   route.params
-
-
   return(
     <VStack flex={1} >
-       <HomeHeader userPhoto={UserPhotoDefault? UserPhotoDefault: {uri:'https://www.github.com/matheusguim21.png'}}  name={route.params.name}/>
+
+      
+       
+         <HomeHeader 
+         name={route.params.name}
+         userPhoto={userPhoto}/>
+        <TouchableOpacity
+        style={{
+          backgroundColor:'#202024',
+        }}
+       onPress={()=> handleUserPhotoSelect()}
+       ><Text 
+       marginLeft={8}
+       marginTop={-4}
+       color={'green.500'}>Alterar foto</Text>
+        </TouchableOpacity>
       <VStack bg={"gray.600"}>
         <Image 
         source={LogoSocinpro}
@@ -56,6 +136,7 @@ export function Home(){
         height={32}
         alignSelf={'center'}
         alt="LogoSocinpro"
+        
         />
       </VStack>
       
@@ -137,25 +218,44 @@ export function Home(){
             // borderColor={'amber.300'}
 
             >
-              <HStack marginTop={4}>
+              <HStack 
+              h={20}
+              width={'80%'}
+              marginRight={-4}
+              justifyContent={'space-between'}
+              alignItems={'center'}
+              
+              >
                 <MoneySvg
                 width={'60px'} 
                 height={'60px'}
                 />
                 <VStack
-                marginLeft={4}
+                marginLeft={6}
                 >
                   <Text
                   color={'gray.200'}
                   fontWeight={"bold"}
                   fontSize={'lg'}
-                  
-                  >Saldo Atual: </Text>
+                  >Saldo Atual </Text>
                   <Text
                   color={"amber.300"}
                   fontSize={'lg'}
                   >R$ 100,00</Text>
                 </VStack>
+                <TouchableOpacity
+                
+                
+                
+                >
+                  <DetailsSvg
+                 style={{marginLeft:40}}
+                 width={'25px'}
+                 height={'25px'}
+                 fill={theme.colors.gray[100]}
+                 
+                 />
+                </TouchableOpacity>
               </HStack>
             </Box>
 
@@ -175,26 +275,13 @@ export function Home(){
             width={'100%'}
             
              >
-                <Text
-                color={"white"}
-                fontSize={'lg'}
-                marginTop={3}
-                >
-                  Conta Bancária:
-                  
-                </Text>
-                {/* <Text
-                fontSize={'md'}
-                color={'gray.100'}
-                marginBottom={3}
-                >
-                  Tipo de conta: corrente
-                </Text> */}
+               
               <HStack 
-              width={'100%'}
-              marginTop={-2}
-              justifyContent={'center'}
+              width={'82%'}
+              marginRight={-4}
+              justifyContent={'space-between'}
               alignItems={'center'}
+              
               >
             
                 {/* <Text
@@ -202,15 +289,36 @@ export function Home(){
                 fontSize={'lg'}
                 >
                 Banco:
-                   */}
-                   <Text 
-                  color={'purple.400'}
-                  fontSize={'lg'}
-                  >Nubank</Text> 
+              */}
+              <BankSvg
+              width={'72px'} 
+              height={'72px'}
+              style={{marginLeft:-5,}}
+              />
+                   <Text
+                   numberOfLines={1}
+                   marginLeft={-5}
+                  
+                   maxWidth={'150px'}
+                   color={bank === 'Nubank'? "purple.500": bank ==='Inter'? "orange.500": bank === 'Banco do Brasil'? "#f5f517": bank === 'Bradesco' ? 'red.600': "white"}
+                   fontSize={'23px'}
+                  
+                  >{bank}</Text> 
                  
                 {/* </Text> */}
                 
+               <TouchableOpacity
                
+               
+               >
+                 <DetailsSvg
+                 style={{marginRight:4}}
+                 width={'25px'}
+                 height={'25px'}
+                 fill={theme.colors.gray[100]}
+                 
+                 />
+               </TouchableOpacity>
               </HStack>
               <HStack
               justifyContent={'center'}
@@ -231,9 +339,9 @@ export function Home(){
             <Text
             color={'gray.200'}
             fontSize={'md'}
-            marginTop={5}
+            marginTop={4}
             alignSelf={'center'}            >
-              Último Atualização: {today}
+              Última Atualização: {today}
             </Text>
   
              </VStack>

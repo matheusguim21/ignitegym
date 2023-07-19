@@ -19,7 +19,7 @@ export function HomeHeader({name, paddingTop, paddingX, userPhoto}:Props){
     <HStack bg={"gray.600"} pt={paddingTop? paddingTop: 16} pb={5} px={paddingX? paddingX: 8} alignItems={'center'} justifyContent={'space-between'}>
       <HStack>
         <UserPhoto
-        source={userPhoto}
+        source={{uri:userPhoto}}
         size={16}
         marginRight={2}
         alt="imagem do usuário"
