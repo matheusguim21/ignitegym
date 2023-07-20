@@ -46,7 +46,7 @@ type RouteParams ={
 } 
 
 
-const today = dayjs().format('DD/MM/YYYY')
+const today = dayjs().format('DD/MM/YYYY hh:mm')
 
 const PHOTO_SIZE = 20;
 
@@ -56,6 +56,9 @@ const PHOTO_SIZE = 20;
 export function Home(){
 
   const toast = useToast()
+
+
+
 
 
   async function handleUserPhotoSelect() {
@@ -102,7 +105,7 @@ export function Home(){
     } 
   }
   
-  const [bank, setbank] = useState('Bradesco')
+  const [bank, setbank] = useState('Nubank')
   const [changePhotoVisible, setChangePhotoVisible] = useState(false)
   const [userPhoto, setUserPhoto] = useState<string | undefined>(undefined);
 
@@ -157,43 +160,73 @@ export function Home(){
           borderWidth={'1'}
           
           >
-           <HStack>
-             <VStack width={'50%'}
-             justifyContent={'center'}
-             alignItems={'center'}
-  
-    
+           <HStack
+           justifyContent={'space-between'}
+           
+           >
+             <TouchableOpacity
+             style={{
+              width:'49.85%',
+              borderColor:'#2eda44',
+              borderWidth:1.5,
+              borderRadius:8,
+              justifyContent:'center',
+              alignItems:'center'
+
+             }}
+             onPress={()=> navigation.navigate('demonstrativos')}
+             
              >
-                <Image 
-                source={LogoSocinproSemNome}
-                w={'100px'}
-                h={'70px'}
-                alt="logoSocinpro"
+               <VStack width={'100%'}
+               justifyContent={'center'}
+               alignItems={'center'}
     
-                />
-                <Text
-                color={'gray.100'}
-                fontSize={"lg"}
-                >Extrato SOC</Text>
-             </VStack>
-             <VStack width={'50%'}
-             justifyContent={'center'}
-             alignItems={'center'}
-             paddingY={4}
-    
-    
+      
+               >
+                  <Image 
+                  source={LogoSocinproSemNome}
+                  w={'100px'}
+                  h={'70px'}
+                  alt="logoSocinpro"
+      
+                  />
+                  <Text
+                  color={'gray.100'}
+                  fontSize={"lg"}
+                  >Extrato SOC</Text>
+               </VStack>
+             </TouchableOpacity>
+             <TouchableOpacity
+             style={{
+              width:'49.85%',
+              borderColor:'#ed1414',
+              borderWidth:1.5,
+              borderRadius:8,
+              justifyContent:'center',
+              alignItems:'center',
+              marginTop:-2
+
+             }}
              >
-                <LogoECAD
-                width={'100px'}
-                height={'60px'}
-                
-                />
-                <Text
-                marginTop={2}
-                color={'gray.100'}
-                fontSize={"lg"}
-                >Extrato ECAD</Text>
-             </VStack>
+               <VStack width={'100%'}
+               justifyContent={'center'}
+               alignItems={'center'}
+               paddingY={4}
+      
+      
+               >
+                  <LogoECAD
+                  width={'100px'}
+                  height={'60px'}
+                  
+                  />
+                  <Text
+                  marginTop={2}
+                  color={'gray.100'}
+                  fontSize={"lg"}
+                  >Extrato ECAD</Text>
+               </VStack>
+             </TouchableOpacity>
            </HStack>
           </Box>
 
@@ -299,9 +332,9 @@ export function Home(){
                    numberOfLines={1}
                    marginLeft={-5}
                   
-                   maxWidth={'150px'}
+                   maxWidth={'160px'}
                    color={bank === 'Nubank'? "purple.500": bank ==='Inter'? "orange.500": bank === 'Banco do Brasil'? "#f5f517": bank === 'Bradesco' ? 'red.600': "white"}
-                   fontSize={'23px'}
+                   fontSize={'20px'}
                   
                   >{bank}</Text> 
                  

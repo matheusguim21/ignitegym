@@ -10,6 +10,7 @@ import FonogramaSvg from '@assets/icons/fonograma1.svg'
 import ProfileSvg from '@assets/profile.svg'
 import {useRoute} from '@react-navigation/native'
 import { Fonogramas } from '@screens/Fonogramas';
+import { Demonstrativos } from '@screens/Demonstrativos';
 
 type AppRoutes ={
 
@@ -35,6 +36,10 @@ type AppRoutes ={
     ano:string;
     codigo:string;
 }}
+  demonstrativos:undefined
+
+
+
   }
 
   
@@ -115,13 +120,6 @@ export function AppRoutes(){
         </Box>
       )}}
       />
-    <Screen
-      name="Card"
-      component={Obra}
-      options={{
-        tabBarButton:()=> null
-      }}
-      />
 
       <Screen
       name="profile"
@@ -140,8 +138,23 @@ export function AppRoutes(){
           color={'white'}
           fontSize={'xs'}
           >Perfil</Text></Box>
-      )}}
+          )}}
       />
+          <Screen
+            name="Card"
+            component={Obra}
+            options={{
+              tabBarButton:()=> null
+            }}
+            />
+          <Screen
+            name="demonstrativos"
+            component={Demonstrativos}
+            options={{
+              tabBarButton:()=> null
+            }}
+            />
+      
       
     </Navigator>
 

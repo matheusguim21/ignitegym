@@ -1,5 +1,6 @@
 {
   "expo": {
+    "userInterfaceStyle": "automatic",
     "name": "SocinproApp",
     "slug": "ignitegym",
     "version": "1.0.0",
@@ -28,7 +29,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/LogoSocinpro.png",
+        "foregroundImage": "./assets/logosemnome.png",
         "backgroundColor": "#121214"
       },
       "permissions": [
