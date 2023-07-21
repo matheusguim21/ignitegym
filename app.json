@@ -18,6 +18,20 @@
         {
           "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
+        
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 31,
+            "targetSdkVersion": 31,
+            "buildToolsVersion": "31.0.0"
+          },
+          "ios": {
+            "deploymentTarget": "13.0"
+          }
+        }
       ]
     ],
     "assetBundlePatterns": [
@@ -31,6 +45,7 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/logosemnome.png",
         "backgroundColor": "#121214"
+       
       },
       "permissions": [
         "android.permission.RECORD_AUDIO"
