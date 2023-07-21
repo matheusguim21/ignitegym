@@ -11,7 +11,6 @@ import * as FileSystem from 'expo-file-system'
 
 
 
-import { UserPhoto } from "@components/UserPhoto";
 import LogoSocinpro from '@assets/logos/LogoSocinpro.png'
 import LogoSocinproSemNome from '@assets/logos/logosemnome.png'
 import LogoECAD from '@assets/logos/logo-ecad-home.svg'
@@ -149,87 +148,133 @@ export function Home(){
        width={'100%'}
        height={'100%'}
       >
+
+        
           {/* Box Extratos */}
           <Box  
          
           width={'100%'}
-          height={"32"}
-          backgroundColor={'gray.400'}  
-          borderRadius={"lg"}
-          borderColor={'gray.300'}
-          borderWidth={'1'}
+          height={"150px"}
           
           >
            <HStack
            justifyContent={'space-between'}
-           
+           height={"full"}
            >
-             <TouchableOpacity
-             style={{
-              width:'49.85%',
-              borderColor:'#2eda44',
-              borderWidth:1.5,
-              borderRadius:8,
-              justifyContent:'center',
-              alignItems:'center'
-
-             }}
-             onPress={()=> navigation.navigate('demonstrativos')}
-             
-             >
-               <VStack width={'100%'}
-               justifyContent={'center'}
+               <VStack width={'49%'}
+               height={'full'}
+               borderColor={"green.400"}
+               borderWidth={2}
+               borderRadius={'lg'}
+               justifyContent={'space-evenly'}
                alignItems={'center'}
+               backgroundColor={"gray.400"}
     
       
                >
-                  <Image 
-                  source={LogoSocinproSemNome}
-                  w={'100px'}
-                  h={'70px'}
-                  alt="logoSocinpro"
-      
-                  />
-                  <Text
-                  color={'gray.100'}
-                  fontSize={"lg"}
-                  >Extrato SOC</Text>
-               </VStack>
-             </TouchableOpacity>
-             <TouchableOpacity
-             style={{
-              width:'49.85%',
-              borderColor:'#ed1414',
-              borderWidth:1.5,
-              borderRadius:8,
-              justifyContent:'center',
-              alignItems:'center',
-              marginTop:-2
+                  <Box
+                  justifyContent={'center'}
+                  alignItems={'center'}
+                  >
+                    <Image 
+                    source={LogoSocinproSemNome}
+                    w={'100px'}
+                    h={'70px'}
+                    alt="logoSocinpro"
+        
+                    />
+                    <Text
+                    color={'gray.100'}
+                    fontSize={"lg"}
+                    marginTop={-3}
+                    
+                    >Extrato SOC</Text>
+                  </Box>
+                  <TouchableOpacity
+                  style={{
+                    width:'50%',
+                    height:'17%',
+                    
+                    backgroundColor:'#15b94c',
+                    borderRadius:8,
+                    justifyContent:'center',
+                    alignItems:'center'
+                    
 
-             }}
-             >
-               <VStack width={'100%'}
-               justifyContent={'center'}
+                  }}
+                  onPress={()=> navigation.navigate('demoSOC')}
+                  
+                  >
+                    <Text
+                    color={"white"}
+                    fontSize={"md"}
+                    marginTop={-1}
+
+                    >Gerar</Text>
+                  </TouchableOpacity>
+            </VStack>
+               <VStack width={'49%'}
+               height={'full'}
+               borderColor={"#ed1414"}
+               borderWidth={2}
+               borderRadius={'lg'}
+               justifyContent={'space-evenly'}
                alignItems={'center'}
-               paddingY={4}
-      
+               backgroundColor={"gray.400"}
+
+    
       
                >
-                  <LogoECAD
-                  width={'100px'}
+                  <Box
+                  justifyContent={'center'}
+                  alignItems={'center'}
+                  >
+                    <LogoECAD
+                  width={'60px'}
                   height={'60px'}
                   
-                  />
-                  <Text
-                  marginTop={2}
-                  color={'gray.100'}
-                  fontSize={"lg"}
-                  >Extrato ECAD</Text>
-               </VStack>
-             </TouchableOpacity>
+                    />
+                    <Text
+                    color={'gray.100'}
+                    fontSize={"lg"}
+                    
+                    >Extrato ECAD</Text>
+                  </Box>
+                  <TouchableOpacity
+                  style={{
+                    width:'50%',
+                    height:'17%',
+                    
+                    backgroundColor:'#ed1414',
+                    borderRadius:8,
+                    justifyContent:'center',
+                    alignItems:'center'
+                    
+
+                  }}
+                  onPress={()=> navigation.navigate('demoECAD')}
+                  
+                  >
+                    <Text
+                    color={"white"}
+                    fontSize={"md"}
+                    marginTop={-1}
+
+                    >Gerar</Text>
+                  </TouchableOpacity>
+            </VStack>
+             
            </HStack>
           </Box>
+      
+      <Text
+      color={"white"}
+      marginTop={10}
+      marginBottom={1}
+      marginLeft={2}
+      fontSize={"md"}
 
+      >Conta Bancária</Text>
       {/* bank Box */}
         <Box
         backgroundColor={'gray.400'}  
@@ -238,7 +283,6 @@ export function Home(){
         height={'30%'}
         borderColor={'gray.300'}
         borderWidth={'1'}
-        marginTop={'10'}
         >
           <VStack
           padding={4}

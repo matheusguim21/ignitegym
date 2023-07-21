@@ -4,6 +4,7 @@ import{ MaterialIcons } from '@expo/vector-icons'
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import {AuthNavigatorRoutesProps} from '@routes/auth.routes'
+import UserPhotoDefault from '@assets/userPhotoDefault.png'
 
 
 type Props ={
@@ -19,7 +20,7 @@ export function HomeHeader({name, paddingTop, paddingX, userPhoto}:Props){
     <HStack bg={"gray.600"} pt={paddingTop? paddingTop: 16} pb={5} px={paddingX? paddingX: 8} alignItems={'center'} justifyContent={'space-between'}>
       <HStack>
         <UserPhoto
-        source={{uri:userPhoto}}
+        source={userPhoto? {uri:userPhoto}: UserPhotoDefault}
         size={16}
         marginRight={2}
         alt="imagem do usuário"

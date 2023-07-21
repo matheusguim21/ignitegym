@@ -10,7 +10,8 @@ import FonogramaSvg from '@assets/icons/fonograma1.svg'
 import ProfileSvg from '@assets/profile.svg'
 import {useRoute} from '@react-navigation/native'
 import { Fonogramas } from '@screens/Fonogramas';
-import { Demonstrativos } from '@screens/Demonstrativos';
+import { DemoSOC } from '@screens/DemoSOC';
+import { DemoECAD } from '@screens/DemoECAD';
 
 type AppRoutes ={
 
@@ -36,7 +37,8 @@ type AppRoutes ={
     ano:string;
     codigo:string;
 }}
-  demonstrativos:undefined
+  demoSOC:undefined
+  demoECAD:undefined
 
 
 
@@ -148,8 +150,15 @@ export function AppRoutes(){
             }}
             />
           <Screen
-            name="demonstrativos"
-            component={Demonstrativos}
+            name="demoSOC"
+            component={DemoSOC}
+            options={{
+              tabBarButton:()=> null
+            }}
+            />
+          <Screen
+            name="demoECAD"
+            component={DemoECAD}
             options={{
               tabBarButton:()=> null
             }}

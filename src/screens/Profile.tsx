@@ -51,7 +51,7 @@ export function Profile() {
       if (photoSelected.assets[0].uri) {
         const photoInfo = await FileSystem.getInfoAsync(photoSelected.assets[0].uri);
 
-        if (photoInfo.exists && photoInfo.size && (photoInfo.size / 1024 / 1024) > 3) {
+        if (photoInfo.exists && photoInfo.size && (photoInfo.size / 1024 / 1024) > 10) {
           return toast.show({
             title: 'Imagem muito grande. Escolha uma imagem de até 5MB',
             bgColor: 'red.500',
@@ -95,7 +95,7 @@ export function Profile() {
               endColor={'gray.400'}
             /> :
             <UserPhoto
-              source={{uri:userPhoto}}
+              source={userPhoto? {uri:userPhoto}: UserPhotoDefault}
               size={PHOTO_SIZE}
               alt="Foto de perfil"
             />

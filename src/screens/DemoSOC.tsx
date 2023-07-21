@@ -7,13 +7,14 @@ import React, { useState } from 'react'
 import { Modal, TouchableOpacity } from 'react-native'
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
-export function Demonstrativos(){
+export function DemoSOC(){
 
   
   
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
-  const [selectedDate, setSelectedDate] = useState<dayjs.Dayjs>(dayjs());
+  const [initialDate, setInitialDate] = useState<dayjs.Dayjs>(dayjs());
+  const [finalDate, setFinalDate] = useState<dayjs.Dayjs>(dayjs());
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -23,10 +24,15 @@ export function Demonstrativos(){
     setDatePickerVisibility(false);
   };
 
-  const handleConfirm = (date:Date) => {
-    setSelectedDate(dayjs(date))
+  const handleConfirmInitalDate = (date:Date) => {
+    setInitialDate(dayjs(date))
     hideDatePicker();
   };
+  const handleConfirmFinalDate = (data:Date) =>{
+    setFinalDate(dayjs(data))
+    hideDatePicker()
+
+  }
 
   
   
@@ -48,6 +54,7 @@ export function Demonstrativos(){
           />  
 
           <ScreenHeader 
+          
           title="Extrato SOCINPRO"/>
       </Box>
       <VStack
@@ -89,17 +96,17 @@ export function Demonstrativos(){
                 fontSize={'lg'}
                 textAlign={'center'}
                 width={32}
-                >{selectedDate.format('DD/MM/YY')}</Text>
+                >{initialDate.format('DD/MM/YY')}</Text>
               </TouchableOpacity>
     
               <DateTimePickerModal
               isVisible={isDatePickerVisible}
               mode="date"
-              display="spinner" // Utilize "spinner" para exibir seleção de mês e ano
+              display="default" // Utilize "spinner" para exibir seleção de mês e ano
               confirmTextIOS="Confirmar" // Texto do botão de confirmação no iOS
               
               cancelTextIOS="Cancelar" // Texto do botão de cancelamento no iOS
-              onConfirm={handleConfirm}
+              onConfirm={handleConfirmInitalDate}
               onCancel={hideDatePicker}
             />
             <Text
@@ -126,17 +133,17 @@ export function Demonstrativos(){
                 fontSize={'lg'}
                 textAlign={'center'}
                 width={32}
-                >{selectedDate.format('DD/MM/YY')}</Text>
+                >{finalDate.format('DD/MM/YY')}</Text>
               </TouchableOpacity>
     
               <DateTimePickerModal
               isVisible={isDatePickerVisible}
               mode="date"
-              display="spinner" // Utilize "spinner" para exibir seleção de mês e ano
+              display="default" // Utilize "spinner" para exibir seleção de mês e ano
               confirmTextIOS="Confirmar" // Texto do botão de confirmação no iOS
               
               cancelTextIOS="Cancelar" // Texto do botão de cancelamento no iOS
-              onConfirm={handleConfirm}
+              onConfirm={handleConfirmFinalDate}
               onCancel={hideDatePicker}
             />
     
