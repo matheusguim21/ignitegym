@@ -1,152 +1,127 @@
-import { Button } from "@components/Button";
-import { Input } from "@components/Input";
-import { ScreenHeader } from "@components/ScreenHeader"
-import { UserPhoto } from "@components/UserPhoto"
-import {Center, ScrollView, Text, VStack, Skeleton, Heading, useToast} from "native-base"
-import { useState } from "react";
-import { TouchableOpacity, Alert } from "react-native";
-import * as ImagePicker from 'expo-image-picker'
-import * as FileSystem from 'expo-file-system'
+import { useState } from 'react';
+import { Alert, TouchableOpacity } from 'react-native';
+import { Center, ScrollView, VStack, Skeleton, Text, Heading, useToast } from 'native-base';
+import * as ImagePicker from 'expo-image-picker';
+import * as FileSystem from 'expo-file-system';
+
+import { ScreenHeader } from '@components/ScreenHeader';
+import { UserPhoto } from '@components/UserPhoto';
+import { Input } from '@components/Input';
+import { Button } from '@components/Button';
 
 
 const PHOTO_SIZE = 33;
 
+export function Profile() {
 
+  const [photoIsLoading, setPhotoIsLoading] = useState(false);
+  const [userPhoto, setUserPhoto] = useState('https://github.com/rodrigorgtic.png');
 
-export function Profile(){
-  const toast = useToast()
+  const toast = useToast();
 
-  const [photoIsLoading,setPhotoIsLoading] = useState(false)
+  async function handleUserPhotoSelected(){
+    setPhotoIsLoading(true);
+    
+    try {
+      const photoSelected = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        quality: 1,
+        aspect: [4, 4],
+        allowsEditing: true,
+      });
   
-  const [userPhoto, setUserPhoto] = useState('https://github.com/matheusguim21.png')
-
-  async function handleUserPhotoSelect(){
-    setPhotoIsLoading(true)
-    
-  try{ 
-
-
-    const photoSelected = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing:true,
-      quality:1,
-      aspect:[4,4],
-      mediaTypes:ImagePicker.MediaTypeOptions.Images
-      
-    })
-    console.log(photoSelected.canceled)
-
-    if(photoSelected.canceled){
-      return;
-    }
-    if(photoSelected.assets[0].uri){
-
-      
-      const photoInfo = await FileSystem.getInfoAsync(photoSelected.assets[0].uri)
-    
-      console.log(photoInfo.size/1024/1024)
-      
-      if(photoInfo.size && (photoInfo.size/1024/1024) > 3){
-        return toast.show({
-          title:'Imagem muito grande. Escolha uma imagem de até 5MB',
-          bgColor:'red.500',
-          placement:'top',
-          duration:3000,
-          rounded:'md',
-          alignSelf:'center'
-        })
+      if(photoSelected.cancelled) {
+        return;
       }
-        toast.show({
-          title:'Imagem alterada com sucesso',
-          bgColor:'green.500',
-          rounded:'md',
-          placement:'top',
-          duration:2000,
 
-        })
-        setUserPhoto(photoSelected.assets[0].uri)
+      if(photoSelected.uri) {
+
+        const photoInfo = await FileSystem.getInfoAsync(photoSelected.uri);
+        
+        if(photoInfo.size && (photoInfo.size  / 1024 / 1024 ) > 2){
+          
+          return toast.show({
+            title: 'Essa imagem é muito grande. Escolha uma de até 5MB.',
+            placement: 'top',
+            bgColor: 'red.500'
+          })
+        }
+
+        setUserPhoto(photoSelected.uri);
+      }
+  
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setPhotoIsLoading(false)
     }
-
-
-
-  }catch(error){
-    console.log(error)
-  }finally{
-    setPhotoIsLoading(false)
   }
-}
-
-
-  return(
+ 
+  return (
     <VStack flex={1}>
-      <ScreenHeader title="Perfil"/>
-     <ScrollView  contentContainerStyle={{paddingBottom:20}}>
-       <Center mt={"6"} px={10}>
-          { photoIsLoading ?
-            
-            <Skeleton
-          rounded={'full'}
-          size={PHOTO_SIZE}
-          startColor={'gray.700'}
-          endColor={'gray.400'}
-          />
+      <ScreenHeader title='Perfil' />
+
+      <ScrollView contentContainerStyle={{ paddingBottom: 36 }}>
+        <Center mt={6} px={10}>
+          {
+            photoIsLoading ?
+              <Skeleton 
+                w={PHOTO_SIZE}
+                h={PHOTO_SIZE}
+                rounded="full"
+                startColor="gray.500"
+                endColor="gray.400"
+              />
             :
-          <UserPhoto 
-          size={PHOTO_SIZE}
-          alt="Foto de perfil"
-          source={{ uri:userPhoto}}
-    
-          />}
+              <UserPhoto 
+                source={{ uri: userPhoto }}
+                alt="Foto do usuário"
+                size={PHOTO_SIZE}
+              />
+          }
+          
+          <TouchableOpacity onPress={handleUserPhotoSelected}>
+            <Text color="green.500" fontWeight="bold" fontSize="md" mt={2} mb={8}>
+              Alterar Foto
+            </Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity onPress={handleUserPhotoSelect}>
-          <Text color={'green.500'} mt={3}>
-            Alterar foto
-          </Text>
-        </TouchableOpacity>
+          <Input 
+            bg="gray.600" 
+            placeholder='Nome' 
+          />
 
+          <Input 
+            bg="gray.600" 
+            placeholder="E-mail"
+            isDisabled
+          />
         
-        <Input mt={10}
-        bgColor='gray.600'
-        placeholder="Nome"
-        defaultValue="Matheus Guimarães"
-        />
-        <Input 
-        bgColor='gray.600'
-        placeholder="Email"
-        isDisabled 
-        defaultValue="matheusguim13@gmail.com"
-        />
-
-      
-          <Heading color={'gray.200'} fontSize={"md"} mb={2} mt={12} alignSelf={'flex-start'}>
-            Alterar Senha
+          <Heading color="gray.200" fontSize="md" mb={2} alignSelf="flex-start" mt={12} fontFamily="heading">
+            Alterar senha
           </Heading>
+
           <Input 
-          bgColor='gray.600'
-          placeholder="Senha antiga"
-          type="password"
-          secureTextEntry
-          />
-          <Input 
-          bgColor='gray.600'
-          placeholder="Nova Senha"
-          type="password"
-          secureTextEntry
-          />
-          <Input 
-          bgColor='gray.600'
-          placeholder="Confirme a nova Senha"
-          type="password"
-          secureTextEntry
+            bg="gray.600"
+            placeholder="Senha antiga"
+            secureTextEntry
           />
 
-          <Button title="Atualizar dados"/>
-          </Center>
-        
-     </ScrollView>
+          <Input 
+            bg="gray.600"
+            placeholder="Nova senha"
+            secureTextEntry
+          />
 
+          <Input 
+            bg="gray.600"
+            placeholder="Confirme a nova senha"
+            secureTextEntry
+          />
 
+          <Button title="Atualizar" mt={4} />
+        </Center>
+      </ScrollView>
     </VStack>
-
-
-  )
+  );
 }

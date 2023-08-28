@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "ignitegym",
-    "slug": "ignitegym",
+    "name": "ignite-rn-03-ignite-gym",
+    "slug": "ignite-rn-03-ignite-gym",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logoRevitalia.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/logoRevitalia.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#0f0f0f"
+      "backgroundColor": "#ffffff"
     },
     "plugins": [
       [
@@ -19,30 +19,23 @@
         }
       ]
     ],
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.matheusguim.ignitegym"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#121214"
-      },
-      "permissions": [
-        "android.permission.RECORD_AUDIO"
-      ],
-      "package": "com.matheusguim.ignitegym"
+        "backgroundColor": "#FFFFFF"
+      }
     },
     "web": {
-      "favicon": "./assets/logoRevitalia.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "005c7860-116f-4653-a018-6af3909c4905"
-      }
+      "favicon": "./assets/favicon.png"
     }
   }
 }

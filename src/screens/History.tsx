@@ -3,6 +3,7 @@ import { Heading, VStack, SectionList, Text } from 'native-base';
 
 import { HistoryCard } from '@components/HistoryCard';
 import { ScreenHeader } from '@components/ScreenHeader';
+
 export function History() {
   const [exercises, setExercises] = useState([
     {
@@ -14,9 +15,11 @@ export function History() {
       data: ["Puxada frontal"]
     }
   ]);
+
   return (
     <VStack flex={1}>
       <ScreenHeader title='Histórico' />
+
       <SectionList 
         sections={exercises}
         keyExtractor={item => item}
@@ -24,7 +27,7 @@ export function History() {
           <HistoryCard />
         )}
         renderSectionHeader={({ section }) => (
-          <Heading color="gray.200" fontSize="md" mt={10} mb={3}>
+          <Heading color="gray.200" fontSize="md" mt={10} mb={3} fontFamily="heading">
             {section.title}
           </Heading>
         )}
@@ -36,7 +39,7 @@ export function History() {
             Vamos fazer exercícios hoje?
           </Text>
         )}
-        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
       />
 
     </VStack>
