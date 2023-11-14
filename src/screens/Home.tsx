@@ -29,6 +29,10 @@ export function Home() {
     try {
       const response = await api.get("/groups");
       setGroups(response.data);
+
+      const novosGrupos = await api.get("/groups");
+      
+  
     } catch (error) {
       const isAppError = error instanceof AppError;
       const title = isAppError

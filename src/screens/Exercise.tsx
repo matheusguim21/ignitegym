@@ -43,6 +43,10 @@ export function Exercise() {
       setIsLoading(true);
       const response = await api.get(`/exercises/${exerciseId}`);
       setExercise(response.data);
+
+      const testedeAPI = await api.get('https://fakestoreapi.com/products');
+      console.log(testedeAPI.data[0].category);
+      
     } catch (error) {
       const isAppError = error instanceof AppError;
       const title = isAppError
