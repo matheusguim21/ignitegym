@@ -3,17 +3,40 @@ import { Alert, TouchableOpacity } from 'react-native';
 import { Center, ScrollView, VStack, Skeleton, Text, Heading, useToast } from 'native-base';
 import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system';
-
+import * as yup from 'yup'
 import { ScreenHeader } from '@components/ScreenHeader';
 import { UserPhoto } from '@components/UserPhoto';
 import { Input } from '@components/Input';
 import { Button } from '@components/Button';
+import {Controller, useForm} from 'react-hook-form'
+import { useAuth } from '@hooks/useAuth';
 
 
 const PHOTO_SIZE = 33;
+type FormDataProps ={
+  email:string;
+  nome:string;
+  old_password:string
+  password:string;
+  confirm_password:string
+
+}
 
 export function Profile() {
 
+  const {user}= useAuth()
+
+  const {control, handleSubmit} = useForm<FormDataProps>({
+    defaultValues:{
+      nome:user.name,
+      email:user.email,
+
+    }
+  })
+
+  const profileSchema = yup.object({
+    name: yup.string()
+  })
   const [photoIsLoading, setPhotoIsLoading] = useState(false);
   const [userPhoto, setUserPhoto] = useState('https://github.com/rodrigorgtic.png');
 
@@ -56,7 +79,9 @@ export function Profile() {
       setPhotoIsLoading(false)
     }
   }
- 
+  async function handleProfileUpdate(data:FormDataProps){
+    console.log(data)
+  }
   return (
     <VStack flex={1}>
       <ScreenHeader title='Perfil' />
@@ -86,40 +111,84 @@ export function Profile() {
             </Text>
           </TouchableOpacity>
 
-          <Input 
+          <Controller
+          control={control}
+          name='nome'
+          render={({field:{onChange,value}})=>(
+            <Input 
             bg="gray.600" 
             placeholder='Nome' 
+            value={value}
+            onChangeText={onChange}
           />
-
+          )}
+         />
+         <Controller
+         control={control}
+         name='email'
+         render={({field:{onChange, value}})=>(
+            
           <Input 
-            bg="gray.600" 
-            placeholder="E-mail"
-            isDisabled
-          />
+          bg="gray.600" 
+          placeholder="E-mail"
+          value={value}
+          onChangeText={onChange}
+          isDisabled
+        />
+         )}
+         />
+
         
           <Heading color="gray.200" fontSize="md" mb={2} alignSelf="flex-start" mt={12} fontFamily="heading">
             Alterar senha
           </Heading>
-
-          <Input 
+          <Controller
+          control={control}
+          name='old_password'
+          render={({field:{onChange}})=>(
+            <Input 
             bg="gray.600"
             placeholder="Senha antiga"
             secureTextEntry
+            onChangeText={onChange}
           />
-
-          <Input 
+          )}
+          />
+          <Controller
+          control={control}
+          name='password'
+          render={({field:{onChange, value}})=>(
+            <Input 
             bg="gray.600"
             placeholder="Nova senha"
             secureTextEntry
+            onChangeText={onChange}
+            
           />
-
-          <Input 
+          )}
+          />
+          <Controller
+          control={control}
+          name='confirm_password'
+          render={({field:{onChange}})=>(
+            <Input 
             bg="gray.600"
             placeholder="Confirme a nova senha"
             secureTextEntry
+            onChangeText={onChange}
           />
+          )}
+          />
+          
+         
 
-          <Button title="Atualizar" mt={4} />
+        
+
+          
+
+          <Button title="Atualizar" mt={4}
+          onPress={handleSubmit(handleProfileUpdate)}
+          />
         </Center>
       </ScrollView>
     </VStack>

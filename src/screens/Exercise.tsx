@@ -31,10 +31,14 @@ export function Exercise() {
   const toast = useToast();
   const [exercise, setExercise] = useState<ExercisesDTO>({} as ExercisesDTO);
   const [isLoading, setIsLoading] = useState(false);
+  const [sendingRegister, setSendingRegister] = useState(false);
   const navigation = useNavigation<AppNavigatorRoutesProps>();
   const route = useRoute();
   const { exerciseId } = route.params as RouteParamsProps;
+
+
   console.log("ID exercicio: ", exerciseId);
+
   function handleGoBack() {
     navigation.goBack();
   }
@@ -42,10 +46,10 @@ export function Exercise() {
     try {
       setIsLoading(true);
       const response = await api.get(`/exercises/${exerciseId}`);
+      console.log(response.data)
       setExercise(response.data);
 
-      const testedeAPI = await api.get('https://fakestoreapi.com/products');
-      console.log(testedeAPI.data[0].category);
+      
       
     } catch (error) {
       const isAppError = error instanceof AppError;
@@ -58,21 +62,54 @@ export function Exercise() {
         backgroundColor: "red.500",
       });
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
+      setSendingRegister(false);
     }
   }
+
+  async function handleExerciseHistoryRegister() {
+    try{
+      setSendingRegister(true)
+      await api.post("/history",{
+        exercise_id:exerciseId
+      })
+      toast.show({
+        title:"Exercício registrado com sucesso",
+        backgroundColor:"green.500 ",
+        duration:1000,
+        placement:"top"
+      })
+    }catch(error){
+      const isAppError = error instanceof AppError;
+      const title = isAppError? error.message : "Não foi possível resgistrar o exercício"
+
+      toast.show({
+        title,
+        backgroundColor:"red.500",
+        duration:2000,
+        placement:'top'
+      })
+      console.log(error);
+      
+    }finally{
+      
+      setSendingRegister(false)
+    }
+    
+  }
+  
   useEffect(() => {
     fetchExerciseDetails();
   }, [exerciseId]);
   return (
     <VStack flex={1}>
-      <VStack px={8} bg="gray.600" pt={12}>
+      <VStack px={8} bg="gray.600" pt={16}>
         <TouchableOpacity onPress={handleGoBack}>
           <Icon as={Feather} name="arrow-left" color="green.500" size={6} />
         </TouchableOpacity>
 
         {isLoading ? (
-          <Loading />
+          null
         ) : (
           <HStack
             justifyContent="space-between"
@@ -141,7 +178,10 @@ export function Exercise() {
               </HStack>
             </HStack>
 
-            <Button title="Marcar como realizado" />
+            <Button 
+            isLoading={sendingRegister}
+            title="Marcar como realizado"
+            onPress={handleExerciseHistoryRegister} />
           </Box>
         </VStack>
       )}

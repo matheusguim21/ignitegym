@@ -4,10 +4,10 @@
     "slug": "ignitegym",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logoRevitalia.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/logoRevitalia.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#0f0f0f"
     },
@@ -37,7 +37,7 @@
       "package": "com.matheusguim.ignitegym"
     },
     "web": {
-      "favicon": "./assets/logoRevitalia.png"
+      "favicon": "./assets/icon.png"
     },
     "extra": {
       "eas": {
