@@ -61,7 +61,10 @@ export function SignIn() {
         bgColor: "red.500",
       });
       setIsLoading(false);
+    }finally{
+      setIsLoading(false);
     }
+
   }
 
   return (

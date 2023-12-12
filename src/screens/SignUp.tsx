@@ -69,8 +69,11 @@ export function SignUp() {
     try {
       setIsLoading(true);
 
-      await api.post("/users", { name, email, password });
+      const response = await api.post("/users", { name, email, password });
+      if( response.data.user && response.data.token ) {
+
       await signIn(email, password);
+      }
     } catch (error) {
       setIsLoading(false);
 
